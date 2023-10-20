@@ -1,47 +1,66 @@
-
-//B00103207   VLAD ANTON   LAB 6 PART 1
-
+/*vlad
+b00103207*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-
-struct time
-{
-    int hours;
-    int minutes;
-    int seconds;
-}
-;
-struct time split_time(long total_seconds);
-
-
+float betcalc (float);
 int main()
 {
+    int a ,i,colour;
+    float bet;
 
-long seconds;
-struct time time_data;
+    printf("Choose a number for you colour:\n 1.Red\n 2.Black\n");
+    scanf("%d",&colour);
 
-printf("enter value for seconds:\n");                // enter the value for seconds
-scanf("%ld",&seconds);
+    printf("Place your bet in euro please:");
+    scanf("%f",&bet);
 
-time_data = split_time(seconds);
+      if(colour == 1)
+    {
+        printf("You have chose the red colour and your bet is: %f\n",bet);
+    }
+    else if (colour == 2)
+    {
+        printf("You have chose the black colour and your bet is:%f\n",bet);
+    }
+    else
+    {
+        printf("Error check you colour\n");
+    }
 
-printf("hrs: mins: secs: \n %d:%d:%d",time_data.hours,time_data.minutes,time_data.seconds);      // depending on the number it will place it in the correct category
 
+    srand(time(NULL));
 
-    return 0;
+    a = rand()%37;
+
+    printf(" The wheel rolls  %d\n",a);
+
+    if(a%2 == 0 && colour == 1)
+    {
+        printf("Congratulation you have won %f",betcalc(bet));
+    }
+    else if(a%2 == 0 && colour == 2)
+    {
+        printf("You have lost your bet sorry try again later:");
+    }
+    else if(!(a%2 == 0) && colour == 1)
+    {
+        printf("You have lost your bet please try again later:");
+    }
+    else if(!(a%2 == 0) && colour == 2)
+    {
+        printf("Congratulation you have won %f",betcalc(bet));
+    }
 }
-
-
-struct time split_time(long total_seconds)
+float betcalc (float w)
 {
-    struct time t;
+    float x = 0.47, y, z;
 
-    t.hours = total_seconds / 3600;                // the number will be sent back to t
-    total_seconds %= 3600;
-    t.minutes = total_seconds / 60;
-    t.seconds = total_seconds %60;
+   z = w * x;
 
-    return t;
+   y =z + w;
+
+    return(y);
 
 }
